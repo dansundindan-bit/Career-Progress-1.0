@@ -121,3 +121,42 @@ body {
     height: 100%;
     background-color: #888888;
 }
+
+.hunger-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-bar {
+    flex: 1;
+    height: 10px;
+    background-color: #222222;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#hunger-progress {
+    width: 50%;
+    height: 100%;
+    background-color: #cc3333;
+}
+
+#hunger-percent {
+    width: 35px;
+}
+
+#hunger-time {
+    width: 45px;
+}
+
+.day-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.day-bar {
+    flex: 1;
+}
