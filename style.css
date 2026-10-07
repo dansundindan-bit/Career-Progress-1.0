@@ -221,3 +221,16 @@ body {
     display: flex;
     gap: 10px;
 }
+
+@media (max-width: 1200px) {
+    .game-container {
+        grid-template-columns: 1fr;
+        width: 90%;
+        max-width: none;
+    }
+
+     .panel {
+        min-width: 0;
+        box-sizing: border-box;
+    }
+}
