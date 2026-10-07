@@ -3,7 +3,7 @@ let money = 0;
 let lifetime = 0;
 
 // Stats
-let hunger = 1.5;
+let hunger = 15.5;
 let hungerLastUpdate = 0;
 let dead = false;
 
