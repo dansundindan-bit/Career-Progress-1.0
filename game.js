@@ -28,5 +28,9 @@ function addLog(message) {
     log.prepend(entry);
 }
 
-
+document.addEventListener("keydown", function(event) {
+    if (event.key.toLowerCase() === "f") {
+        feed();
+    }
+});
 

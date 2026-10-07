@@ -88,3 +88,58 @@ function cryForFood() {
         }
     }, 20);
 }
+
+let exploreLevel = 1;
+let exploreDistance = 0;
+let exploreRequiredDistance = 100;
+
+function explore() {
+    if (feedCooldown) {
+        return;
+    }
+
+    feedCooldown = true;
+
+    const startTime = Date.now();
+    const cooldown = 1000;
+
+    const timer = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / cooldown * 100, 100);
+
+        document.getElementById("action-progress").style.width =
+            progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(timer);
+
+            exploreDistance += 1;
+
+            if (exploreDistance >= exploreRequiredDistance) {
+                exploreLevel++;
+                exploreDistance = 0;
+                exploreRequiredDistance *= 8;
+
+                addLog("Explore leveled up! Level " + exploreLevel);
+            }
+
+            updateExplore();
+
+            feedCooldown = false;
+
+            document.getElementById("action-progress").style.width = "0%";
+        }
+    }, 20);
+}
+
+function updateExplore() {
+    const progress =
+        (exploreDistance / exploreRequiredDistance) * 100;
+
+    document.getElementById("explore-progress").style.width =
+        progress + "%";
+
+    document.getElementById("explore-distance").textContent =
+        exploreDistance + " / " + exploreRequiredDistance + " m";
+}
+

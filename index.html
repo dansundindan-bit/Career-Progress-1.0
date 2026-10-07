@@ -32,7 +32,12 @@
             <div class="feed-row">
                 <button id="feed-button" class="job-button" onclick="feed()" title="+2 hunger">Feed</button>
                 <button id="cry-button" class="job-button" onclick="cryForFood()" title="Increases Hunger gained from Feed by +0.5">Cry for food</button>
-            </div>       
+            </div>  
+                 
+        </div>
+        <div class="task">
+        <button id="explore-button" class="job-button" onclick="explore()">Explore</button>
+           
         </div>
 
         
@@ -68,6 +73,14 @@
             <div id="hunger-percent">50%</div>
             <div id="hunger-time">14:24</div>            
         </div>
+
+        <div class="explore-row">
+        <div class="explore-bar">
+        <div id="explore-progress"></div>
+        </div>
+        <div id="explore-distance">0 / 100 m</div>
+        </div>
+
     <div id="feed-uses">Feed uses: 0</div> 
     
     </div>
