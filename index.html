@@ -20,26 +20,31 @@
 
     <!-- Vänster sida, Missions etc. -->
     <div class="panel left-panel">
-        <h2>Pick cans</h2>
+        <h2>Jobs</h2>
 
         <div class="action-bar">
             <div id="action-progress"></div>
         </div>
 
         <div class="task">
-                <button class="job-button" onclick="pickCan()">Pick can</button>
-                <button class="job-button" onclick="sellCans()">Sell cans</button>
-            <div id="counter">Cans: 0</div>
-            <div id="bags">Bags: 0</div>
+
+            <div class="feed-row">
+                <button id="feed-button" class="job-button" onclick="feed()" title="+2 hunger">Feed</button>
+                <button id="cry-button" class="job-button" onclick="cryForFood()" title="Increases Hunger gained from Feed by +0.5">Cry for food</button>
+            </div>       
         </div>
-    </div>    
 
-
-
+        
+    </div>   
 
     <!-- Höger sida, Statistics -->
     <div class="panel right-panel">
+
         <h2>Statistics</h2>
+
+        <div id="progression-message"></div>  
+
+        <h3 id="lifetime">Day: 0</h3>
 
         <div class="day-row">
             <div class="day-bar">
@@ -47,10 +52,7 @@
             </div>
             <div id="day-percent">0%</div>
             <div id="day-time">14:24</div>
-        </div>
-
-        <div id="lifetime">Day: 0</div> 
-       
+        </div>             
         <br>
         <br>
 
@@ -63,38 +65,53 @@
                 <div id="hunger-progress"></div>
             </div>
             <div id="hunger-percent">50%</div>
-            <div id="hunger-time">14:24</div>
+            <div id="hunger-time">14:24</div>            
         </div>
+    <div id="feed-uses">Feed uses: 0</div> 
+    
+    </div>
 
-        
-           
-         
+    <!-- Logg panelen -->
+    <div class="panel log-panel">
+    <h2>Logg</h2>
+
+    <div id="event-log"></div>
     </div>
 
 
+    <!-- Achievements panelen -->
+    <div class="panel achievements-panel">
+    <h2>Achievements</h2>
 
-
-    <!-- Shop panelen -->
-    <div class="panel shop-panel">
-    <h2>Shop</h2>
-
-        <div class="shop-item">
-            <div class="shop-price" id="plastic-bag-price"></div>
-            <button class="shop-button" onclick="buyPlasticBag()">Plastic Bag</button>
-        </div>
-
-        <div class="shop-item">     
-            <div class="shop-price" id="beer-price"></div>
-            <button class="shop-button" onclick="buyBeer()">6-Pack Beer</button>
-        </div>
+    <div class="achievement-item">
+        <button class="achievement-button" id="achievement-feed">Feed</button>
     </div>
+
+    <div class="achievement-item">
+        <button class="achievement-button" id="achievement-well-fed">Well fed</button>
+    </div>
+</div>
+
+
+    
+<div id="death-screen">
+    <div>YOU DIED</div>
+</div>
+
 
     <script src="game.js"></script>
+    <script src="hunger.js"></script>
+    <script src="progression.js"></script>
+    <script src="achievements.js"></script>
     <script src="shop.js"></script>  
     <script src="ui.js"></script>
-    <script src="time.js"></script>     
+    <script src="time.js"></script>
+    <script src="hunger.js"></script>    
     <script src="jobs.js"></script>    
     <script src="save.js"></script>
+
+
+</div>
 
 </body>
 </html>

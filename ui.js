@@ -1,19 +1,5 @@
 function updateUI() {
-    document.getElementById("money").textContent = "Money: " + money;
-    document.getElementById("counter").textContent = "Cans: " + cans;
-    document.getElementById("bags").textContent = "Bags: " + bags;
-    
     updateHunger();
-
-}
-
-
-function updateShopUI() {
-    document.getElementById("beer-price").textContent =
-        beerPrice;
-
-    document.getElementById("plastic-bag-price").textContent =
-        plasticBagPrice;
 }
 
 function updateDayProgress() {
@@ -41,7 +27,7 @@ function updateHunger() {
     Math.floor(hunger) + "%";
 
     const remainingSeconds =
-        hunger * (GAME_DAY_LENGTH / 100);
+    hunger / getHungerDrainPerSecond();
 
     const minutes = Math.floor(remainingSeconds / 60);
     const seconds = Math.floor(remainingSeconds % 60);
