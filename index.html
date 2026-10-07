@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Progress</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Save Knappar -->
+
+    <div class="save-area">
+    <button onclick="exportSave()">Export Save</button>
+    <button onclick="importSave()">Import Save</button>
+    </div>
+
+   
+<!-- Spelområde -->
+<div class="game-container">
+
+    <!-- Vänster sida, Missions etc. -->
+    <div class="panel left-panel">
+        <h2>Pick cans</h2>
+
+        <div class="action-bar">
+            <div id="action-progress"></div>
+        </div>
+
+        <div class="task">
+                <button class="job-button" onclick="pickCan()">Pick can</button>
+                <button class="job-button" onclick="sellCans()">Sell cans</button>
+            <div id="counter">Cans: 0</div>
+            <div id="bags">Bags: 0</div>
+        </div>
+    </div>    
+
+    <!-- Höger sida, Statistics -->
+    <div class="panel right-panel">
+        <h2>Statistics</h2>
+
+        <div class="day-bar">
+            <div id="day-progress"></div> 
+        </div>
+
+        <div id="money">Money: 0</div>
+        <div id="lifetime">Day: 0</div>    
+         
+    </div>
+
+    <!-- Shop panelen -->
+    <div class="panel shop-panel">
+    <h2>Shop</h2>
+
+        <div class="shop-item">
+            <div class="shop-price" id="plastic-bag-price"></div>
+            <button class="shop-button" onclick="buyPlasticBag()">Plastic Bag</button>
+        </div>
+
+        <div class="shop-item">     
+            <div class="shop-price" id="beer-price"></div>
+            <button class="shop-button" onclick="buyBeer()">6-Pack Beer</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="shop.js"></script>  
+    <script src="ui.js"></script>
+    <script src="time.js"></script>     
+    <script src="jobs.js"></script>    
+    <script src="save.js"></script>
+
+</body>
+</html>
