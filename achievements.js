@@ -16,3 +16,5 @@ function unlockAchievement(name) {
         document.getElementById("cry-button").style.display = "block";
     }
 }
+
+/* Dont datamine me pls*/
