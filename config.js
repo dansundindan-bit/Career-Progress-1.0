@@ -1,0 +1,21 @@
+const CURRENT_SAVE_VERSION = 1;
+
+const MAX_STAT = 99;
+const GAME_DAY_LENGTH = 864;
+
+// Hunger
+const BASE_HUNGER_PER_DAY = 100;
+
+// Feed
+const FEED_BASE_AMOUNT = 10.33;
+const FEED_INCREASE = 0.01;
+const FEED_COOLDOWN = 2500;
+
+// Cry
+const CRY_BASE_BONUS = 0.5;
+const CRY_COOLDOWN = 500;
+
+// Explore
+const EXPLORE_BASE_DISTANCE = 100;
+const EXPLORE_LEVEL_MULTIPLIER = 8;
+const EXPLORE_COOLDOWN = 1000;

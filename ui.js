@@ -4,13 +4,13 @@ function updateUI() {
 
 function updateDayProgress() {
     document.getElementById("day-progress").style.width =
-        dayProgress + "%";
+        gameState.dayProgress + "%";
 
     document.getElementById("day-percent").textContent =
-        Math.floor(dayProgress) + "%";
+        Math.floor(gameState.dayProgress) + "%";
 
     const remainingSeconds =
-        GAME_DAY_LENGTH - gameDaySeconds;
+        GAME_DAY_LENGTH - gameState.gameDaySeconds;
 
     const minutes = Math.floor(remainingSeconds / 60);
     const seconds = remainingSeconds % 60;
@@ -21,13 +21,13 @@ function updateDayProgress() {
 
 function updateHunger() {
     document.getElementById("hunger-progress").style.width =
-        hunger + "%";
+        gameState.hunger + "%";
 
     document.getElementById("hunger-percent").textContent =
-    Math.floor(hunger) + "%";
+        Math.floor(gameState.hunger) + "%";
 
     const remainingSeconds =
-    hunger / getHungerDrainPerSecond();
+        gameState.hunger / getHungerDrainPerSecond();
 
     const minutes = Math.floor(remainingSeconds / 60);
     const seconds = Math.floor(remainingSeconds % 60);

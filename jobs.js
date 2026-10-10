@@ -1,10 +1,3 @@
-let feedBonus = 0;
-let feedIncrease = 0.01;
-let feedUses = 0;
-let cryBonus = 0.5;
-
-
-
 let feedCooldown = false;
 
 function feed() {
@@ -15,7 +8,7 @@ function feed() {
     feedCooldown = true;
 
     const startTime = Date.now();
-    const cooldown = 2500;
+    const cooldown = FEED_COOLDOWN;
 
     const timer = setInterval(() => {
         const elapsed = Date.now() - startTime;
@@ -26,24 +19,24 @@ function feed() {
 
         if (progress >= 100) {
             clearInterval(timer);
-            const feedAmount = 0.25 + feedBonus + (feedUses * feedIncrease);
+            const feedAmount = FEED_BASE_AMOUNT + gameState.feedBonus + (gameState.feedUses * FEED_INCREASE);
 
-            hunger = Math.min(hunger + feedAmount, MAX_STAT);
+            gameState.hunger = Math.min(gameState.hunger + feedAmount, MAX_STAT);
 
             addLog("Feed used: +" + feedAmount + " hunger");
 
-            feedUses++;
+            gameState.feedUses++;
 
             console.log(
     "Feed used | Hunger:",
-    hunger,
+    gameState.hunger,
     "| Feed bonus:",
-    feedBonus,
+    gameState.feedBonus,
     "| Feed amount:",
     feedAmount
 );
 
-            if (hunger >= 99) {
+            if (gameState.hunger >= 99) {
             unlockAchievement("well-fed");
             }
 
@@ -65,7 +58,7 @@ function cryForFood() {
     feedCooldown = true;
 
     const startTime = Date.now();
-    const cooldown = 500;
+    const cooldown = CRY_COOLDOWN;
 
     const timer = setInterval(() => {
         const elapsed = Date.now() - startTime;
@@ -77,7 +70,7 @@ function cryForFood() {
         if (progress >= 100) {
             clearInterval(timer);
 
-            feedBonus += cryBonus;
+            gameState.feedBonus += cryBonus;
             addLog("Cry for food: +" + cryBonus + " Feed bonus");
             document.getElementById("cry-button").title =
     "Increases Hunger gained from Feed by +" + cryBonus;
@@ -89,10 +82,6 @@ function cryForFood() {
     }, 20);
 }
 
-let exploreLevel = 1;
-let exploreDistance = 0;
-let exploreRequiredDistance = 100;
-
 function explore() {
     if (feedCooldown) {
         return;
@@ -101,7 +90,7 @@ function explore() {
     feedCooldown = true;
 
     const startTime = Date.now();
-    const cooldown = 1000;
+    const cooldown = EXPLORE_COOLDOWN;
 
     const timer = setInterval(() => {
         const elapsed = Date.now() - startTime;
@@ -113,14 +102,14 @@ function explore() {
         if (progress >= 100) {
             clearInterval(timer);
 
-            exploreDistance += 1;
+            gameState.exploreDistance += 1;
 
-            if (exploreDistance >= exploreRequiredDistance) {
-                exploreLevel++;
-                exploreDistance = 0;
-                exploreRequiredDistance *= 8;
+            if (gameState.exploreDistance >= gameState.exploreRequiredDistance) {
+                gameState.exploreLevel++;
+                gameState.exploreDistance = 0;
+                gameState.exploreRequiredDistance *= EXPLORE_LEVEL_MULTIPLIER;
 
-                addLog("Explore leveled up! Level " + exploreLevel);
+                addLog("Explore leveled up! Level " + gameState.exploreLevel);
             }
 
             updateExplore();
@@ -134,12 +123,13 @@ function explore() {
 
 function updateExplore() {
     const progress =
-        (exploreDistance / exploreRequiredDistance) * 100;
+        (gameState.exploreDistance / gameState.exploreRequiredDistance) * 100;
 
     document.getElementById("explore-progress").style.width =
         progress + "%";
 
     document.getElementById("explore-distance").textContent =
-        exploreDistance + " / " + exploreRequiredDistance + " m";
+        gameState.exploreDistance + " / " +
+        gameState.exploreRequiredDistance + " m";
 }
 

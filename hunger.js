@@ -1,5 +1,3 @@
-const BASE_HUNGER_PER_DAY = 100;
-
 let hungerSpeed = 1;
 
 function getHungerDrainPerSecond() {
@@ -7,13 +5,23 @@ function getHungerDrainPerSecond() {
 }
 
 setInterval(() => {
-    if (dead) {
+    if (gameState.dead) {
         return;
     }
 
-    hunger = Math.max(0, hunger - getHungerDrainPerSecond());
+    const previousHunger = gameState.hunger;
 
-    if (hunger <= 0) {
+    gameState.hunger = Math.max(
+    0,
+    gameState.hunger - getHungerDrainPerSecond()
+);
+
+devLog("HUNGER", "Hunger decreased", {
+    from: previousHunger,
+    to: gameState.hunger
+});
+
+    if (gameState.hunger <= 0) {
         die();
     }
 

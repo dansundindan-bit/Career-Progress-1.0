@@ -1,22 +1,9 @@
-//Resources
-let money = 0;
-let lifetime = 0;
-
-// Stats
-let hunger = 15.5;
-let hungerLastUpdate = 0;
-let dead = false;
-
-// Constants
-const MAX_STAT = 99;
-
 // Game over och sånt plus
 function die() {
-    dead = true;
+    gameState.dead = true;
 
     console.log("PLAYER DIED");
     document.getElementById("death-screen").style.display = "flex";
-    
 }
 
 function addLog(message) {

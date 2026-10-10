@@ -1,31 +1,24 @@
-console.log("TIME.JS FUNGERAR");
 
-const GAME_DAY_LENGTH = 864;
+function startGameClock() {
+    setInterval(() => {
+        gameState.gameDaySeconds++;
 
-let dayProgress = 0;
-let gameDaySeconds = 0;
+        if (gameState.hunger <= 0 && !gameState.dead) {
+            die();
+        }
 
-setInterval(() => {
-    gameDaySeconds++;
+        gameState.dayProgress =
+            (gameState.gameDaySeconds / GAME_DAY_LENGTH) * 100;
 
-    if (hunger <= 0 && !dead) {
-    die();
+        if (gameState.gameDaySeconds >= GAME_DAY_LENGTH) {
+            gameState.gameDaySeconds = 0;
+            gameState.dayProgress = 0;
+            gameState.lifetime++;
+
+            updateUI();
+        }
+
+        updateDayProgress();
+        updateHunger();
+    }, 1000);
 }
-
-    dayProgress = (gameDaySeconds / GAME_DAY_LENGTH) * 100;
-    
-
-    console.log("Seconds:", gameDaySeconds, "Progress:", dayProgress);
-
-    if (gameDaySeconds >= GAME_DAY_LENGTH) {
-    gameDaySeconds = 0;
-    dayProgress = 0;
-    lifetime++;
-
-        updateUI();
-    }
-
-    updateDayProgress();
-    updateHunger();
-
-}, 1000);

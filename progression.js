@@ -5,28 +5,29 @@ All progression ska balanseras kring att panta burkar hela livet.
 Det ska precis möjliggöra att överleva livsspannet på 70(?) år och ska gå utan att skippa tid.
 ======================================*/
 
-let unlocked = {
-    feed: false,
-    cans: false
-};
 
 function unlockProgression(name, message) {
-    if (unlocked[name]) {
+    if (gameState.unlocked[name]) {
+        if (name === "feed") {
+            document.getElementById("feed-button").style.display = "block";
+        }
         return;
     }
 
-    unlocked[name] = true;
+    gameState.unlocked[name] = true;
 
     if (name === "feed") {
-    unlockAchievement("feed");
+        unlockAchievement("feed");
+        document.getElementById("feed-button").style.display = "block";
     }
 
-    document.getElementById("progression-message").textContent = message; 
-
-    if (name === "feed") {
-    document.getElementById("feed-button").style.display = "block";
+    document.getElementById("progression-message").textContent = message;
 }
-    
+
+function restoreProgression() {
+    if (gameState.unlocked.feed) {
+        document.getElementById("feed-button").style.display = "block";
+    }
 }
 
 setTimeout(() => {

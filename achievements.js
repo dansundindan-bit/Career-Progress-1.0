@@ -1,14 +1,10 @@
-let achievements = {
-    feed: false,
-    "well-fed": false
-};
-
 function unlockAchievement(name) {
-    if (achievements[name]) {
+    if (gameState.achievements[name]) {
+        document.getElementById("achievement-" + name).style.display = "block";
         return;
     }
 
-    achievements[name] = true;
+    gameState.achievements[name] = true;
 
     document.getElementById("achievement-" + name).style.display = "block";
 
@@ -17,4 +13,18 @@ function unlockAchievement(name) {
     }
 }
 
-/* Dont datamine me pls*/
+function restoreAchievements() {
+    for (const name in gameState.achievements) {
+        if (gameState.achievements[name]) {
+            const element = document.getElementById("achievement-" + name);
+
+            if (element) {
+                element.style.display = "block";
+            }
+        }
+    }
+
+    if (gameState.achievements["well-fed"]) {
+        document.getElementById("cry-button").style.display = "block";
+    }
+}
