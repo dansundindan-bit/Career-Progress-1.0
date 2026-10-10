@@ -17,6 +17,32 @@ function saveGame() {
     }
 }
 
+
+function restart() {
+    const confirmed = confirm(
+        "Restart the game from the beginning? All progress will be lost."
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    // Stop the current page from saving the old state on reload.
+    window.removeEventListener("beforeunload", saveGame);
+
+    // Remove the saved game.
+    localStorage.removeItem("careerProgressSave");
+
+    // Verify that the save is gone.
+    console.log(
+        "Save after restart:",
+        localStorage.getItem("careerProgressSave")
+    );
+
+    location.reload();
+}
+
+
 function loadGame() {
     const savedData = localStorage.getItem("careerProgressSave");
 
@@ -85,16 +111,8 @@ restoreProgression();
 
 const deathScreen = document.getElementById("death-screen");
 
-if (gameState.dead) {
-    document.getElementById("death-screen").style.display = "flex";
-} else {
-    document.getElementById("death-screen").style.display = "none";
-}
-
-if (deathScreen && gameState.dead) {
-    deathScreen.style.display = "flex";
-} else if (deathScreen) {
-    deathScreen.style.display = "none";
+if (deathScreen) {
+    deathScreen.style.display = gameState.dead ? "flex" : "none";
 }
 
 startGameClock();

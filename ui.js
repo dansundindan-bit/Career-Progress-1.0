@@ -9,11 +9,10 @@ function updateDayProgress() {
     document.getElementById("day-percent").textContent =
         Math.floor(gameState.dayProgress) + "%";
 
-    const remainingSeconds =
-        GAME_DAY_LENGTH - gameState.gameDaySeconds;
+    const elapsedSeconds = gameState.gameDaySeconds;
 
-    const minutes = Math.floor(remainingSeconds / 60);
-    const seconds = remainingSeconds % 60;
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
 
     document.getElementById("day-time").textContent =
         minutes + ":" + String(seconds).padStart(2, "0");
